@@ -1,4 +1,7 @@
-# OMF-Publisher
+# MEGLA IoT Suite OMF Publisher for OSIsoft PI
+You have a variety of data sources and an OSIsoft PI? Now go a step further and connect your data sources to your OSIsoft PI via the "MEGLA IoT Suite OMF Publisher for OSIsoft PI" and increase the efficiency of your data. Take advantage of the already existing prerequisites. The MEGLA IoT Suite already supports any common field protocol, such as MODBUS, OPC-UA or S7. The reliable connection of the " MEGLA IoT Suite OMF Publisher for OSIsoft PI " is absolutely easy. Add it to your IoT gateway with just a few clicks, select the parameters you want for OSIsoft PI and go online.
+
+## OMF
 > The OSIsoft Message Format ([OMF](http://omf-docs.osisoft.com/en/v1.1/ "OMF")) defines a set of message headers and bodies that can be used to generate messages for ingestion into a compliant back-end system. The PI System and OCS both have a compliant OMF receiving endpoint.
 
 >OMF can be used to develop data acquisition applications on platforms and in languages for which there are no supported OSIsoft libraries.
@@ -18,13 +21,13 @@ With the **OMF-Publisher** it is possible to use OMF v1.0 and v1.1.
 1.  To use the **OMF-Publisher** you have to install the deployment package (*OMFPublisher#.dp*) over the Kura - Webinterface first. 
 
 2. After the Installation you should check if it was successful:
- 2.1 You find it under *Device --> Bundles*
- 2.2 Search for the *OMFPublisher* - Bundle. The state of it should be **Active**.
+  * You find it under *Device --> Bundles*
+  * Search for the *OMFPublisher* - Bundle. The state of it should be **Active**.
 3. Now the Wire-Component is installed and can be used:
- 3.1 Drag 'n Drop the component *OMFPublisher* into the *Wire-Graph-Field*
+  * Drag 'n Drop the component *OMFPublisher* into the *Wire-Graph-Field*
  
 4. Configure the *OMF-Publisher* 
- 4.1 To connect your device with the destination system you need a *Producertoken* and a *Target-URL* of it
- 4.2 Give your root-element an individual name
+  * To connect your device with the destination system you need a *Producertoken* and a *Target-URL* of it
+  * Give your root-element an individual name
  
 5. Create an Asset and connect it with the *OMFPublisher*
