@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 MEGLA GmbH and/or its affiliates
+ * Copyright (c) 2020 MEGLA GmbH and/or its affiliates
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -35,6 +35,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import org.eclipse.kura.configuration.ConfigurableComponent;
 import org.eclipse.kura.internal.wire.asset.WireAssetConstants;
+import org.eclipse.kura.type.DataType;
 import org.eclipse.kura.type.TypedValue;
 import org.eclipse.kura.type.TypedValues;
 import org.eclipse.kura.wire.WireComponent;
@@ -61,7 +62,6 @@ import de.megla.iot.OMFPublisher.models.OMFChannel;
 /**
  * OMFPublisher.java
  * 
- * @author Niklas Rose, Till Böcher 
  * The Class de.megla.iot.OMFPublisher is a specific Wire Component to publish a list of
  * {@link WireRecord}s as received in {@link WireEnvelope} to a destination system
  * platform.
@@ -317,8 +317,15 @@ public final class OMFPublisher implements ConfigurableComponent, WireReceiver{
     	    	if(wireRecordProps.containsKey(SINGLE_TIMESTAMP_NAME)){
     	    		//Go through all the entries and extract the channels
     	    		for (Map.Entry<String, TypedValue<?>> entry : wireRecordProps.entrySet()) {
+    	    			
         	            String key=entry.getKey();
         	        	if(!(key.equals(SINGLE_TIMESTAMP_NAME) || key.equals(ASSET_NAME_PROPERTY_KEY))){
+        	        		
+        	        		// if there is value which is not serializable with JSON jump over this entry
+        	    			if(isSpecialFloatingPointValue(entry.getValue())) {
+        	    				continue;
+        	    			}
+        	        		
         	        		String channelname=key;
         	        		channelname = removeSpecialCharacters(channelname);
         			 		//Add channel if it is not already created
@@ -338,6 +345,12 @@ public final class OMFPublisher implements ConfigurableComponent, WireReceiver{
     	    		for (Map.Entry<String, TypedValue<?>> entry : wireRecordProps.entrySet()){
     	    			String key=entry.getKey();
     	    			if(key.contains(SUFFIX_TIMESTAMP)){
+    	    				
+    	    				// if there is value which is not serializable with JSON jump over this entry
+        	    			if(isSpecialFloatingPointValue(entry.getValue())) {
+        	    				continue;
+        	    			}
+    	    				
     	    				String channelname=key.replace(SUFFIX_TIMESTAMP, "");
     	    				channelname = removeSpecialCharacters(channelname);
     	    				//Add channel if it is not already created
@@ -655,6 +668,26 @@ public final class OMFPublisher implements ConfigurableComponent, WireReceiver{
      */
     public String cutString(String input) {
     	return input.substring(0, 60);
+    }
+    
+    /**
+     * checks the value if it's a special floating number like NaN or infinity
+     * @param value
+     * @return
+     */
+    public boolean isSpecialFloatingPointValue(TypedValue<?> value){
+    	
+    	if(value.getType() == DataType.DOUBLE) {
+    		logger.info("Value (DOUBLE) is not a real number and won't be published...");
+    		return ((Double)value.getValue()).isNaN() || ((Double)value.getValue()).isInfinite();
+    	}
+    	
+    	if(value.getType() == DataType.FLOAT) {
+    		logger.info("Value (FLOAT) is not a real number and won't be published...");
+    		return ((Float)value.getValue()).isNaN() || ((Float)value.getValue()).isInfinite();
+    	}
+
+    	return false;	
     }
 }
 

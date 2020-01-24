@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 MEGLA GmbH and/or its affiliates
+ * Copyright (c) 2020 MEGLA GmbH and/or its affiliates
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -19,7 +19,6 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 /**
  * OMFPublisherConfig.java
  * 
- * @author Niklas Rose, Till Böcher  
  * This metatype annotation defines an object-class all the required
  * configurations for the options of a Cloud Publisher Wire Component
  */

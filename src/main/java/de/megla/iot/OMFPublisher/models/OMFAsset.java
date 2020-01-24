@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 MEGLA GmbH and/or its affiliates
+ * Copyright (c) 2020 MEGLA GmbH and/or its affiliates
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,6 +15,7 @@ package de.megla.iot.OMFPublisher.models;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import com.google.gson.Gson;
 
 import de.megla.iot.OMFPublisher.OMFPublisherOptions;
@@ -22,7 +23,6 @@ import de.megla.iot.OMFPublisher.OMFPublisherOptions;
 /**
  * OMFAsset.java
  *
- * @author Niklas Rose, Till Böcher 
  * The class OMFAsset is used to create a new asset, to convert the type number 
  * using the assigned asset name and in JSON format and, accordingly, asset to 
  * attach the channels to the JSON object

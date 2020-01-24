@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 MEGLA GmbH and/or its affiliates
+ * Copyright (c) 2020 MEGLA GmbH and/or its affiliates
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,16 @@
 
 package de.megla.iot.OMFPublisher;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.SocketTimeoutException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,22 +49,9 @@ import de.megla.iot.OMFPublisher.models.OMFTypeMessage;
 import de.megla.iot.OMFPublisher.models.Property;
 import de.megla.iot.OMFPublisher.models.SourceTarget;
 
-import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 /**
  * OMFPublisherHelper.java
  * 
- * @author Niklas Rose, Till Böcher 
  * The OMFPublisherHelper class supports the publisher by writing the individual definitions of Type, Container, 
  * and Data in a suitable JSON format. In addition, it creates the header according to the "messagetype" 
  * and makes a request to the destination system.
@@ -81,12 +78,15 @@ public class OMFPublisherHelper{
 		if (!this.omfPublisherOptions.getSSLVerify()) {
 			// Create a trust manager that does not validate certificate chains
 	        this.trustAllCerts = new TrustManager[] {new X509TrustManager() {
-	                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+	                @Override
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
 	                    return null;
 	                }
-	                public void checkClientTrusted(X509Certificate[] certs, String authType) {
+	                @Override
+					public void checkClientTrusted(X509Certificate[] certs, String authType) {
 	                }
-	                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+	                @Override
+					public void checkServerTrusted(X509Certificate[] certs, String authType) {
 	                }
 	            }
 	        };	 
@@ -98,7 +98,8 @@ public class OMFPublisherHelper{
 		        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 		 	       
 		        HostnameVerifier allHostsValid = new HostnameVerifier() {
-		            public boolean verify(String hostname, SSLSession session) {
+		            @Override
+					public boolean verify(String hostname, SSLSession session) {
 		                return true;
 		            }
 		        };

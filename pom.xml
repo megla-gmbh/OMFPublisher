@@ -1,12 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <organization>
+    <name>MEGLA GmbH</name>
+    <url>https://www.megla.de</url>
+  </organization>
   <groupId>de.megla.iot</groupId>
   <artifactId>de.megla.iot.OMFPublisher</artifactId>
   <name>OMFPublisher</name>
-  <version>1.0.0</version>
-<packaging>bundle</packaging>
+  <version>1.0.1</version>
+  <packaging>bundle</packaging>
 
-<repositories>
+  <repositories>
         <repository>
             <id>eclipe.kura</id>
             <url>https://repo.eclipse.org/content/repositories/kura-releases/</url>

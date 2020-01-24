@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 MEGLA GmbH and/or its affiliates
+ * Copyright (c) 2020 MEGLA GmbH and/or its affiliates
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -18,7 +18,6 @@ import java.util.Map;
 /**
  * OMFTypeMessage.java
  *
- * @author Niklas Rose, Till Böcher 
  * OMFTypeMessage creates the type when a new Asset or Channel was created or modified. 
  * It specifies the type definition in JSON-format.
  */

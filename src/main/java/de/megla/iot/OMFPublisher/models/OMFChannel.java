@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 MEGLA GmbH and/or its affiliates
+ * Copyright (c) 2020 MEGLA GmbH and/or its affiliates
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -23,15 +23,14 @@ import java.util.TimeZone;
 
 import org.eclipse.kura.type.DataType;
 import org.eclipse.kura.type.TypedValue;
+
 import com.google.gson.Gson;
 
 import de.megla.iot.OMFPublisher.OMFPublisherOptions;
-import de.megla.iot.OMFPublisher.models.Property.BoolEnum;
 
 /**
  * OMFChannel.java
  *
- * @author Niklas Rose, Till Böcher 
  * A channel serves to provide further information about an asset. 
  * Each asset has multiple channels for reading and writing data to / from the IoT device. 
  * It contains the associated IDs of the types and containers and the data
@@ -97,10 +96,7 @@ public class OMFChannel {
 		Map<String, Property> properties = new HashMap<>();
 		Property propChannel;
 		
-		// If Channeltype is a Boolean set the TypeDefintion with an enum
-		if(typedValue.getType()==DataType.BOOLEAN) {
-			propChannel = new Property(getOMFType(), BoolEnum.values());
-		} else if(typedValue.getType()==DataType.BYTE_ARRAY) {
+		if(typedValue.getType()==DataType.BYTE_ARRAY) {
 			/* if the Array-Type is used there must be an "items" key which defines the type for each array-element
 			 * NOTE: MAX_ARRAY_ELEMENTS in real is the exact number of elements which has to be in the array!
 			 * in this case "integer"
@@ -138,6 +134,13 @@ public class OMFChannel {
 	 */
 	public String getDataMessageJSON(){
 		Gson gson = new Gson();
+		/*
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Double.class, new DoubleSerializer());
+		gsonBuilder.registerTypeAdapter(Float.class, new FloatSerializer());
+		gsonBuilder.serializeSpecialFloatingPointValues();
+		gson = gsonBuilder.create();
+		*/
 		StringBuilder sb = new StringBuilder();
 		/*
 		 * create a new Channelname for the destination system to switch between Datatypes in Wire and create the data which will be send
@@ -204,7 +207,7 @@ public class OMFChannel {
 	 */
 	private String getOMFType(){
 		if(typedValue.getType()==DataType.BOOLEAN){
-			return "string";
+			return "integer";
 		}else if(typedValue.getType()==DataType.INTEGER){
 			return "integer";
 		}else if(typedValue.getType()==DataType.DOUBLE){
@@ -229,9 +232,9 @@ public class OMFChannel {
 	private <Any> Any getValueWithDataType(){
 		if(typedValue.getType()==DataType.BOOLEAN) {
 			if((Boolean)typedValue.getValue()){
-				return (Any) (String)"True";
+				return (Any) (Integer) 1;
 			}else{
-				return (Any) (String)"False";
+				return (Any) (Integer) 0;
 			} //else
 		}else if(typedValue.getType()==DataType.INTEGER){
 			return (Any)(Integer)typedValue.getValue();
@@ -240,13 +243,13 @@ public class OMFChannel {
 		}else if(typedValue.getType()==DataType.FLOAT){
 			return (Any)(Float)typedValue.getValue();
 		}else if(typedValue.getType()==DataType.STRING){
-			return (Any)(String)("\""+typedValue.getValue().toString()+"\"");
+			return (Any)("\""+typedValue.getValue().toString()+"\"");
 		}else if(typedValue.getType()==DataType.LONG){
 			return (Any)(Long)typedValue.getValue();
 		}else if(typedValue.getType()==DataType.BYTE_ARRAY){
 			return (Any)(Byte[])typedValue.getValue();
 		} else {
-			return (Any) (String)("\""+typedValue.getValue().toString()+"\"");
+			return (Any) ("\""+typedValue.getValue().toString()+"\"");
 		}
 	}	
 	

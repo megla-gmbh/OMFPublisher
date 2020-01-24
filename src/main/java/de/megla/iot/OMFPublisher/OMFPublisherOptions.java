@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019 MEGLA GmbH and/or its affiliates
+ * Copyright (c) 2020 MEGLA GmbH and/or its affiliates
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,15 +12,14 @@
 
 package de.megla.iot.OMFPublisher;
 
-import java.util.Map;
-
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
+
+import java.util.Map;
 
 /**
  * OMFPublisherOptions.java
  * 
- * @author Niklas Rose, Till Böcher 
  * The OMFPublisherOptions class supports the publisher by writing the individual definitions of Type, Container, 
  * and Data in a suitable JSON format. In addition, it creates the header according to the "messagetype" 
  * and makes a request to the destination system.
