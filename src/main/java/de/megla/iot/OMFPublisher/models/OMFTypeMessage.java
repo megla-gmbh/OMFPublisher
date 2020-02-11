@@ -18,6 +18,7 @@ import java.util.Map;
 /**
  * OMFTypeMessage.java
  *
+ * @author Niklas Rose, Till Böcher 
  * OMFTypeMessage creates the type when a new Asset or Channel was created or modified. 
  * It specifies the type definition in JSON-format.
  */
@@ -39,12 +40,6 @@ public class OMFTypeMessage {
 	
 	/**
 	 * Constructor which sets id, description, type, classification, properties and version.
-	 * @param id
-	 * @param description
-	 * @param type
-	 * @param classification
-	 * @param prop
-	 * @param version
 	 */
 	public OMFTypeMessage(String id, String description, String type, String classification, Map<String, Property> prop, String version) {
 		this.id = id;
@@ -57,10 +52,6 @@ public class OMFTypeMessage {
 	
 	/**
 	 * Constructor which sets id, type, classification and properties.
-	 * @param id
-	 * @param type
-	 * @param classification
-	 * @param prop
 	 */
 	public OMFTypeMessage(String id, String type, String classification, Map<String, Property> prop) {
 		this.id = id;

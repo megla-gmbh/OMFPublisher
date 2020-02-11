@@ -15,6 +15,7 @@ package de.megla.iot.OMFPublisher;
 /**
  * HttpStatusCode.java
  *
+ * @author Niklas Rose, Till Böcher 
  * Enum which defines all necessary status codes for an HTTP-request
  */
 public enum HttpStatusCode {
@@ -37,32 +38,22 @@ public enum HttpStatusCode {
 	private String description;
 
 	/**
-	 * Constructor of an HTTP status Code
-	 * @param code
-	 * @param desc
+	 * Constructor of an HTTP status Code.
 	 */
     HttpStatusCode(int code, String desc) {
         this.code = code;
         this.description = desc;
     }
     
-    // ----------------------------------------------------------------
-    //
-    // Getter methods
-    //
-    // ----------------------------------------------------------------  
-
     /**
-     * Gets the HTTP status code as an Integer
-     * @return the status code as an Integer
+     * Gets the HTTP status code as an Integer.
      */
     public int getStatus() { 
         return this.code;
     }
     
     /**
-     * Gets the HTTP status code description
-     * @return the description from the status code
+     * Gets the HTTP status code description.
      */
     public String getDescription() {
     	return this.description;

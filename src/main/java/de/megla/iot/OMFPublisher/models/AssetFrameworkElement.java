@@ -18,6 +18,7 @@ import java.util.HashMap;
 /**
  * AssetFrameworkElement.java
  * 
+ *  @author Niklas Rose, Till Böcher 
  * In an on-premises destination system, an asset is interpreted as an Asset Element.
  */
 public class AssetFrameworkElement {
@@ -31,8 +32,6 @@ public class AssetFrameworkElement {
 	
 	/**
 	 * Constructor which sets the typeid and the array list of values of an AF-element
-	 * @param typeid
-	 * @param values
 	 */
 	public AssetFrameworkElement(String typeid, ArrayList<HashMap<String, String>> values) {
 		this.typeid = typeid;

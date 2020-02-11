@@ -15,6 +15,7 @@ package de.megla.iot.OMFPublisher.models;
 /**
  * OMFContainerMessage.java
  *
+ * @author Niklas Rose, Till Böcher 
  * OMFContainerMessage creates the container when a new Asset or Channel was created. 
  * It specifies the container definition in JSON-format.
  */
@@ -40,14 +41,6 @@ public class OMFContainerMessage {
 	
 	/**
 	 * Constructor which sets id, typeid, typeversion, name, description, tags, metadata and indexes of a Container message.
-	 * @param id
-	 * @param typeid
-	 * @param typeVersion
-	 * @param name
-	 * @param description
-	 * @param tags
-	 * @param metadata
-	 * @param indexes
 	 */
 	public OMFContainerMessage(String id, String typeid, String typeVersion, String name, String description, String tags[], String metadata, String indexes[]) {
 		this.id = id;
@@ -61,9 +54,7 @@ public class OMFContainerMessage {
 	}
 	
 	/**
-	 * Constructor of a simple container message, which sets the id and typeid
-	 * @param id
-	 * @param typeid
+	 * Constructor of a simple container message, which sets the id and typeid.
 	 */
 	public OMFContainerMessage(String id, String typeid) {
 		this.id = id;

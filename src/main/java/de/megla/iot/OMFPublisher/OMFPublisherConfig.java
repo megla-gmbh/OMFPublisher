@@ -19,8 +19,9 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 /**
  * OMFPublisherConfig.java
  * 
+ * @author Niklas Rose, Till Böcher  
  * This metatype annotation defines an object-class all the required
- * configurations for the options of a Cloud Publisher Wire Component
+ * configurations for the options of a Cloud Publisher Wire Component.
  */
 @ObjectClassDefinition(
 		id = "de.megla.iot.OMFPublisher.OMFPublisher",
@@ -44,7 +45,7 @@ public @interface OMFPublisherConfig {
 	
 	@AttributeDefinition(
 			name = "sslverify",
-			defaultValue = "false",
+			defaultValue = "true",
 			type = AttributeType.BOOLEAN)
 	boolean sslVerify();
 	

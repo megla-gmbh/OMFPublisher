@@ -15,6 +15,7 @@ package de.megla.iot.OMFPublisher.models;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.google.gson.Gson;
 
@@ -23,6 +24,7 @@ import de.megla.iot.OMFPublisher.OMFPublisherOptions;
 /**
  * OMFAsset.java
  *
+ * @author Niklas Rose, Till Böcher 
  * The class OMFAsset is used to create a new asset, to convert the type number 
  * using the assigned asset name and in JSON format and, accordingly, asset to 
  * attach the channels to the JSON object
@@ -41,38 +43,22 @@ public class OMFAsset {
 	private ArrayList<LinkedValues> dataValues = new ArrayList<>();
 	
 	/**
-	 * Constructor which sets the name and options of the asset
-	 * @param name User-assigned name of the created asset
-	 * @param myPublisherOptions Options needed by the publisher
+	 * Constructor which sets the name and options of the asset.
 	 */
 	public OMFAsset(String name,OMFPublisherOptions myPublisherOptions){
 		this.assetname=name;
 		this.omfPublisherOptions=myPublisherOptions;
 	}
 	
-	// ----------------------------------------------------------------
-    //
-    // Private methods
-    //
-    // ----------------------------------------------------------------  
-	
 	/**
-	 * Returns the ID for the type of asset
-	 * @return ID of the type and attached name of the asset
+	 * Returns the ID for the type of asset.
 	 */
 	private String getTypeID(){
 		return this.omfPublisherOptions.getDevicename()+"_"+this.assetname;
 	}
 	
-	// ----------------------------------------------------------------
-    //
-    // Public methods
-    //
-    // ----------------------------------------------------------------  
-	
 	/**
-	 * returns the JSON object for the type definition
-	 * @return String in JSON format of the message type
+	 * Returns the JSON object for the type definition.
 	 */
 	public String getTypeMessageJSON(){
 		Gson gson = new Gson();
@@ -86,8 +72,7 @@ public class OMFAsset {
 	}
 		
 	/**
-	 * Returns the asset to be created and the JSON containers for the channels
-	 * @return returns a JSON string containing asset data with corresponding channels
+	 * Returns the asset to be created and the JSON containers for the channels.
 	 */
 	public String getDataMessageJSON(){ 
 		Gson gson = new Gson();
@@ -95,9 +80,8 @@ public class OMFAsset {
 		StringBuilder sb = new StringBuilder();
 		String jsonLinkedDataMessage = "";
 		String jsonAFElement = "";
-		/*
-		 * create Asset Element for each Asset
-		 */
+		
+		//create Asset Element for each Asset
 		ArrayList<LinkedValues> values = new ArrayList<>();
 		ArrayList<HashMap<String, String>> properties = new ArrayList<>();
 		HashMap<String, String> propertyValue = new HashMap<>();
@@ -106,9 +90,8 @@ public class OMFAsset {
 		properties.add(propertyValue);
 		AssetFrameworkElement afElement = new AssetFrameworkElement(typeID, properties);
 		jsonAFElement = gson.toJson(afElement);
-		/*
-		 * Create Parent Asset Links
-		 */
+		
+		//Create Parent Asset Links
 		String typeidSource = "KuraIoTDevice";
 		String index = this.omfPublisherOptions.getDevicename();
 		SourceTarget source = new SourceTarget(typeidSource, index);
@@ -129,46 +112,54 @@ public class OMFAsset {
 	}
 	
 	/**
-	 * Adds all channels from the key value store to the JSON string
-	 * @param typeID 
+	 * Adds all channels from the key value store to the JSON string.
 	 */
 	public void putChannelsToValueList(String typeID) {						
 		String typeid = typeID;
 		String index = typeID;
-		/*
-		 * The parent Asset it the source for every Channel
-		 */
+		
+		//The parent Asset it the source for every Channel
 		SourceTarget source = new SourceTarget(typeid, index);
-		/*
-		 * extract every Channels Source and Target data and add it to the linked value list
-		 */
+
+		//extract every Channels Source and Target data and add it to the linked value list
 		for (Map.Entry<String, OMFChannel> channelEntry : channels.entrySet()){
 			String containerID = channelEntry.getValue().getContainerID();
 			SourceTarget target = new SourceTarget(containerID);
 			LinkedValues sourceAndTarget = new LinkedValues(source, target);	
 			this.dataValues.add(sourceAndTarget);
-		} //for
+		}
 	}
 	
-	// ----------------------------------------------------------------
-    //
-    // Getter methods
-    //
-    // ----------------------------------------------------------------  
-	
 	/**
-	 * Gets the assetname.
-	 * @return name of the asset
+	 * Returns the assetname.
 	 */
 	public String getAssetname() {
 		return assetname;
 	}
 	
 	/**
-	 * Gets all channels of this object. It returns a Map of OMFChannels of the actual OMFAsset.
-	 * @return channels of the asset
+	 * Returns all channels of this object. It returns a Map of OMFChannels of the actual OMFAsset.
 	 */
 	public Map<String, OMFChannel> getChannels() {
 		return channels;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(String.format("Assetname: %s", this.assetname)).append(System.lineSeparator());
+		builder.append("Channels: ").append(System.lineSeparator());
+		
+		for(Entry<String, OMFChannel> entry: this.channels.entrySet()) {
+			builder.append(entry.getValue().toString());
+		}
+		
+		builder.append("Data Values: ").append(System.lineSeparator());
+		for(LinkedValues value: this.dataValues) {
+			builder.append(value.toString());
+		}		
+		
+		return builder.toString();
 	}
 }

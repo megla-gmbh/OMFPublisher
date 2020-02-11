@@ -1,25 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <organization>
-    <name>MEGLA GmbH</name>
-    <url>https://www.megla.de</url>
-  </organization>
-  <groupId>de.megla.iot</groupId>
   <artifactId>de.megla.iot.OMFPublisher</artifactId>
   <name>OMFPublisher</name>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
   <packaging>bundle</packaging>
 
   <repositories>
-        <repository>
-            <id>eclipe.kura</id>
-            <url>https://repo.eclipse.org/content/repositories/kura-releases/</url>
-        </repository>
+	<repository>
+		<id>eclipe.kura</id>
+        <url>https://repo.eclipse.org/content/repositories/kura-releases/</url>
+	</repository>
   </repositories>
   
- <dependencies>
- 	<dependency>
- 		<groupId>org.eclipse.kura</groupId>
+  
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.eclipse.kura</groupId>
  		<artifactId>org.eclipse.kura.api</artifactId>
  		<version>1.4.0</version>
  	</dependency>
@@ -45,10 +42,10 @@
 	    <version>1.0.1</version>
 	</dependency> 
 	<dependency>
-    <groupId>org.osgi</groupId>
-    <artifactId>org.osgi.core</artifactId>
-    <version>4.3.0</version>
-    <scope>provided</scope>
+	    <groupId>org.osgi</groupId>
+	    <artifactId>org.osgi.core</artifactId>
+	    <version>4.3.0</version>
+	    <scope>provided</scope>
 	</dependency>
  	<dependency>
  		<groupId>com.google.code.gson</groupId>
@@ -70,58 +67,57 @@
 	    <artifactId>commons-io</artifactId>
 	    <version>2.4</version>
 	</dependency>	
- </dependencies>
+  </dependencies>
  
- <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-            </plugin>
-            <plugin>
-                <groupId>de.dentrassi.maven</groupId>
-                <artifactId>osgi-dp</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
- 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.1</version>
-                    <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                </plugin>
- 
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>3.2.0</version>
-                    <configuration>
-                        <manifestLocation>META-INF</manifestLocation>
-                        <instructions>
-                            <Bundle-Vendor>MEGLA GmbH</Bundle-Vendor>
-                        </instructions>
-                    </configuration>
-                </plugin>
- 
-                <plugin>
-                    <groupId>de.dentrassi.maven</groupId>
-                    <artifactId>osgi-dp</artifactId>
-                    <version>0.3.0</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>maven-bundle-plugin</artifactId>
+			<extensions>true</extensions>
+		</plugin>
+		<plugin>
+			<groupId>de.dentrassi.maven</groupId>
+			<artifactId>osgi-dp</artifactId>
+			<executions>
+				<execution>
+					<goals>
+						<goal>build</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+				<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Bundle-Vendor>MEGLA GmbH</Bundle-Vendor>
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>de.dentrassi.maven</groupId>
+				<artifactId>osgi-dp</artifactId>
+				<version>0.3.0</version>
+			</plugin>
+		</plugins>
+	</pluginManagement>
   </build>
 </project>

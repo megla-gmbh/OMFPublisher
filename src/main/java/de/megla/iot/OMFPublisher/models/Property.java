@@ -15,6 +15,7 @@ package de.megla.iot.OMFPublisher.models;
 /**
  * Property.java
  *
+ * @author Niklas Rose, Till Böcher 
  * Represents one Property in the Type defintion.
  * Types are listed at the URL: https://omf-developers-companion.readthedocs.io/en/latest/OMF_Type_msg.html#property-types-and-formats
  */
@@ -42,10 +43,7 @@ public class Property {
 	private Property additionalProperties;
 
 	/**
-	 * Constructor which sets the type, format and isindex of an property element
-	 * @param type
-	 * @param format
-	 * @param isindex
+	 * Constructor which sets the type, format and isindex of an property element.
 	 */
 	public Property(String type, String format, boolean isindex) {
 		this.type = type;
@@ -54,9 +52,7 @@ public class Property {
 	}
 	
 	/**
-	 * Constructor which sets the type and isindex of an property element
-	 * @param type
-	 * @param isindex
+	 * Constructor which sets the type and isindex of an property element.
 	 */
 	public Property(String type, boolean isindex) {
 		this.type = type;
@@ -64,10 +60,7 @@ public class Property {
 	}
 	
 	/**
-	 * Constructor which sets the type, items and maxItems of an property element
-	 * @param type
-	 * @param items
-	 * @param maxItems
+	 * Constructor which sets the type, items and maxItems of an property element.
 	 */
 	public Property(String type, Property items, int maxItems) {
 		this.type = type;
@@ -76,8 +69,7 @@ public class Property {
 	}
 	
 	/**
-	 * Constructor which sets the type of an property element
-	 * @param type
+	 * Constructor which sets the type of an property element.
 	 */
 	public Property(String type) {
 		this.type = type;

@@ -20,6 +20,7 @@ import java.util.Map;
 /**
  * OMFPublisherOptions.java
  * 
+ * @author Niklas Rose, Till Böcher 
  * The OMFPublisherOptions class supports the publisher by writing the individual definitions of Type, Container, 
  * and Data in a suitable JSON format. In addition, it creates the header according to the "messagetype" 
  * and makes a request to the destination system.
@@ -59,23 +60,15 @@ public class OMFPublisherOptions{
 
 
     /**
-     * Constructor which sets the properties of the options
-     * @param properties
+     * Constructor which sets the properties of the options.
      */
     public OMFPublisherOptions(final Map<String, Object> properties) {
         requireNonNull(properties, "Properties cannot be null");
         this.properties = properties;
     }
     
-    // ----------------------------------------------------------------
-    //
-    // Getter methods
-    //
-    // ----------------------------------------------------------------  
-    
     /**
-     * returns the value of the producerToken, which is typed by a user
-     * @return String of the producerToken
+     * Returns the value of the producerToken, which is typed by a user.
      */
     public String getProducerToken() {
         String appId = PRODUCER_TOKEN;
@@ -87,8 +80,7 @@ public class OMFPublisherOptions{
     }
     
     /**
-     * returns the value of the targetURL, which is typed by a user
-     * @return String of the targetURL
+     * Returns the value of the targetURL, which is typed by a user.
      */
     public String getTargetURL() {
         String appId = TARGET_URL;
@@ -100,8 +92,7 @@ public class OMFPublisherOptions{
     }
     
     /**
-     * returns the value of the devicename, which is typed by a user
-     * @return String of the devicename
+     * Returns the value of the devicename, which is typed by a user.
      */
     public String getDevicename() {
         String appId = DEVICENAME;
@@ -113,8 +104,7 @@ public class OMFPublisherOptions{
     }
     
     /**
-     * returns the value of the SSLVerify, which is typed by a user
-     * @return boolean of the SSLVerify
+     * Returns the value of the SSLVerify, which is typed by a user.
      */
     public boolean getSSLVerify() {
         boolean appId = SSLVERIFY;
@@ -126,9 +116,8 @@ public class OMFPublisherOptions{
     }
     
     /**
-     * returns the value of the connection Timeout for every message, which is typed by a user
-     * In short: How long should be wait till a connection timed out
-     * @return int of the connectionTimeout
+     * Returns the value of the connection Timeout for every message, which is typed by a user.
+     * In short: How long should be waited till a connection timed out.
      */
     public int getConnectionTimeout() {
         int appId = CONNECTIONTIMEOUT;
@@ -140,9 +129,8 @@ public class OMFPublisherOptions{
     }
     
     /**
-     * returns the value of the inFlightInterval for every message, which is typed by a user
-     * In short: After a period of time, send the next message
-     * @return int of the inFlightInterval
+     * Returns the value of the inFlightInterval for every message, which is typed by a user.
+     * In short: After a period of time, send the next message.
      */
     public int getinFlightInterval() {
         int appId = IN_FLIGHT_INTERVAl;
@@ -153,16 +141,8 @@ public class OMFPublisherOptions{
         return appId;
     }
     
-    // ----------------------------------------------------------------
-    //
-    // Public methods
-    //
-    // ----------------------------------------------------------------  
-    
     /**
-     * Checks if the current options are up-to-date
-     * @param other
-     * @return True or False
+     * Checks if the current options are up-to-date.
      */
     public boolean compare(Object other) {
         if (!(other instanceof OMFPublisherOptions)) {

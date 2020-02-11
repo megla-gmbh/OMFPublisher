@@ -15,6 +15,7 @@ package de.megla.iot.OMFPublisher.models;
 /**
  * LinkedValues.java
  *
+ * @author Niklas Rose, Till Böcher 
  * Each link object has the properties "Source" and "Target".
  */
 public class LinkedValues {
@@ -27,11 +28,26 @@ public class LinkedValues {
 	
 	/**
 	 * Constructor which sets the source and target of the values, which are linked
-	 * @param source
-	 * @param target
 	 */
 	public LinkedValues(SourceTarget source, SourceTarget target) {
 		this.Source = source;
 		this.Target = target;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		if(this.Source != null) {
+			builder.append("Source: ").append(System.lineSeparator());
+			builder.append(this.Source.toString());
+		}
+		
+		if(this.Target != null) {
+			builder.append("Target: ").append(System.lineSeparator());
+			builder.append(this.Target.toString());
+		}
+		
+		return builder.toString();
 	}
 }

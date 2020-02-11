@@ -18,6 +18,7 @@ import java.util.HashMap;
 /**
  * OMFDataMessage.java
  *
+ * @author Niklas Rose, Till Böcher 
  * Data messages are used to create static assets, link assets and container together and feed container values into destination end points
  * Data messages can span multiple Types and Containers. 
  * The body of a Data message is composed of an array of objects.
@@ -38,10 +39,6 @@ public class OMFDataMessage {
 	
 	/**
 	 * Constructor which sets typeid, containerid, typeVersion and the array of values.
-	 * @param typeid
-	 * @param containerid
-	 * @param typeVersion
-	 * @param values
 	 */
 	public OMFDataMessage(String typeid, String containerid, String typeVersion, ArrayList<HashMap<String, Object>> values) {
 		this.typeid = typeid;
@@ -53,10 +50,6 @@ public class OMFDataMessage {
 	/**
 	 * Constructor which sets the containerid and the array of values.
 	 * This constructor is usually used to create an object of an OMFDataMessage.
-	 * @param typeid
-	 * @param containerid
-	 * @param typeVersion
-	 * @param values
 	 */
 	public OMFDataMessage(String containerid, ArrayList<HashMap<String, Object>> values) {
 		this.containerid = containerid;

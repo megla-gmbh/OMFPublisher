@@ -31,6 +31,7 @@ import de.megla.iot.OMFPublisher.OMFPublisherOptions;
 /**
  * OMFChannel.java
  *
+ * @author Niklas Rose, Till Böcher 
  * A channel serves to provide further information about an asset. 
  * Each asset has multiple channels for reading and writing data to / from the IoT device. 
  * It contains the associated IDs of the types and containers and the data
@@ -58,25 +59,17 @@ public class OMFChannel {
 	/**
 	 * Constructor which sets the name of the channel, options and the associated asset. 
 	 * In addition, we set the format of the date.
-	 * @param name name if the channel
-	 * @param omfPublisherOptions options, that are needed by the OMFPublisher
-	 * @param myAsset asset, which belongs to the created channel
 	 */
 	public OMFChannel(String name, OMFPublisherOptions omfPublisherOptions, OMFAsset myAsset){
 		this.channelname=name;
 		this.omfAsset=myAsset;
 		this.omfPublisherOptions=omfPublisherOptions;
+		
 		dateFormatter= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 		dateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
 		Calendar cal  = Calendar.getInstance();
 		this.timestamp = cal.getTime();
 	}
-	
-	// ----------------------------------------------------------------
-    //
-    // Public methods
-    //
-    // ----------------------------------------------------------------  
 
 	/**
 	 * Returns the ID of the container of this channel
@@ -87,8 +80,7 @@ public class OMFChannel {
 	}
 	
 	/**
-	 * Returns a JSON formatted string for the type definition appended to the asset
-	 * @return JSON formatted string representing the type for this channel
+	 * Returns a JSON formatted string for the type definition appended to the asset.
 	 */
 	public String getTypeMessageJSON(){
 		Gson gson = new Gson();
@@ -97,19 +89,16 @@ public class OMFChannel {
 		Property propChannel;
 		
 		if(typedValue.getType()==DataType.BYTE_ARRAY) {
-			/* if the Array-Type is used there must be an "items" key which defines the type for each array-element
-			 * NOTE: MAX_ARRAY_ELEMENTS in real is the exact number of elements which has to be in the array!
-			 * in this case "integer"
-			 */
+			//if the Array-Type is used there must be an "items" key which defines the type for each array-element
+			//NOTE: MAX_ARRAY_ELEMENTS in real is the exact number of elements which has to be in the array!
+			//in this case "integer"
 			String ArrayElementType = "integer";
 			propChannel = new Property(getOMFType(), new Property(ArrayElementType), MAX_ARRAY_ELEMENTS);
 		} else {
 			propChannel = new Property(getOMFType());
-		} //else
-		/*
-		 * create a new Channelname for the destination system to switch between Datatypes in Wire and
-		 * Build your Key-Values of properties up here and put it into the Map
-		 */
+		}
+		//create a new Channelname for the destination system to switch between Datatypes in Wire and
+		//Build your Key-Values of properties up here and put it into the Map
 		sb.append(channelname).append("_").append(this.getTypedValue().getType().name());
 			
 		Property propDate = new Property("string", "date-time", true);
@@ -120,8 +109,7 @@ public class OMFChannel {
 	}
 	
 	/**
-	 * Returns a string formatted in JSON for the containers
-	 * @return JSON formatted string representing the container for this channel
+	 * Returns a JSON formatted string representing the container for this channel.
 	 */
 	public String getContainerMessageJSON(){
 		Gson gson = new Gson();
@@ -130,22 +118,13 @@ public class OMFChannel {
 	
 	/**
 	 * Returns a string formatted in JSON for the data. This data is displayed in the destination system.
-	 * @return JSON formatted string that represents the data for this channel
 	 */
 	public String getDataMessageJSON(){
 		Gson gson = new Gson();
-		/*
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(Double.class, new DoubleSerializer());
-		gsonBuilder.registerTypeAdapter(Float.class, new FloatSerializer());
-		gsonBuilder.serializeSpecialFloatingPointValues();
-		gson = gsonBuilder.create();
-		*/
 		StringBuilder sb = new StringBuilder();
-		/*
-		 * create a new Channelname for the destination system to switch between Datatypes in Wire and create the data which will be send
-		 * to the destination system.
-		 */
+		
+		//create a new Channelname for the destination system to switch between Datatypes in Wire and create the data which will be send
+		//to the destination system.
 		sb.append(channelname).append("_").append(this.getTypedValue().getType().name());
 		ArrayList<HashMap<String, Object>> values = new ArrayList<>();
 		HashMap<String, Object> elements = new HashMap<>();
@@ -155,46 +134,31 @@ public class OMFChannel {
 		values.add(elements);
 
 		return gson.toJson(new OMFDataMessage(this.getContainerID(), values));	
-	}
-	
-	// ----------------------------------------------------------------
-    //
-    // Getter methods
-    //
-    // ----------------------------------------------------------------  
+	} 
 	
 	/**
-	 * Gets the actual channelname.
-	 * @return name of the channel
+	 * Returns the actual channelname.
 	 */
 	public String getChannelname() {
 		return channelname;
 	}
 	
 	/**
-	 * Gets the type and value of the channel as an Object.
-	 * @return TypedValue Object
+	 * Returns the type and value of the channel as an Object.
 	 */
 	public TypedValue<?> getTypedValue() {
 		return typedValue;
 	}
 
 	/**
-	 * Gets the current timestamp.
-	 * @return current timestamp
+	 * Returns the current time stamp.
 	 */
 	public Date getTimestamp() {
 		return timestamp;
 	}
 	
-	// ----------------------------------------------------------------
-    //
-    // Private Getter methods
-    //
-    // ----------------------------------------------------------------  
-	
 	/**
-	 * Returns the Type ID of this channel
+	 * Returns the Type ID of this channel.
 	 * @return unique string consisting of host name, asset name, channel name and channel type. Each separated by a "_".
 	 */
 	private String getTypeID(){
@@ -203,7 +167,6 @@ public class OMFChannel {
 	
 	/**
 	 * Depending on the type of value of the channel, the destination-system-compliant type is returned
-	 * @return type if the value for the destination system
 	 */
 	private String getOMFType(){
 		if(typedValue.getType()==DataType.BOOLEAN){
@@ -226,8 +189,7 @@ public class OMFChannel {
 	}
 
 	/**
-	 * Gets the value for creating the JSON-String for sending the data
-	 * @return value of the channel
+	 * Gets the value for creating the JSON-String for sending the data.
 	 */
 	private <Any> Any getValueWithDataType(){
 		if(typedValue.getType()==DataType.BOOLEAN) {
@@ -251,17 +213,10 @@ public class OMFChannel {
 		} else {
 			return (Any) ("\""+typedValue.getValue().toString()+"\"");
 		}
-	}	
-	
-	// ----------------------------------------------------------------
-    //
-    // Setter methods
-    //
-    // ----------------------------------------------------------------  
+	}
 	
 	/**
 	 * Sets the current timestamp.
-	 * @param timestamp
 	 */
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
@@ -269,9 +224,20 @@ public class OMFChannel {
 	
 	/**
 	 * Sets the current type and value of the channel.
-	 * @param typedValue
 	 */
 	public void setTypedValue(TypedValue<?> typedValue) {
 		this.typedValue = typedValue;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(String.format("Channel name: %s", this.channelname)).append(System.lineSeparator());
+		builder.append(String.format("timestamp: %s", this.timestamp)).append(System.lineSeparator());
+		builder.append(String.format("datatype: %s", this.typedValue.getType().toString())).append(System.lineSeparator());
+		builder.append(String.format("value: %s", this.typedValue.getValue().toString())).append(System.lineSeparator());
+		
+		return builder.toString();
 	}
 }
