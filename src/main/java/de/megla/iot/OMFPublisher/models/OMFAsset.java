@@ -24,7 +24,6 @@ import de.megla.iot.OMFPublisher.OMFPublisherOptions;
 /**
  * OMFAsset.java
  *
- * @author Niklas Rose, Till Böcher 
  * The class OMFAsset is used to create a new asset, to convert the type number 
  * using the assigned asset name and in JSON format and, accordingly, asset to 
  * attach the channels to the JSON object

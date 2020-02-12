@@ -15,7 +15,6 @@ package de.megla.iot.OMFPublisher.models;
 /**
  * OMFContainerMessage.java
  *
- * @author Niklas Rose, Till Böcher 
  * OMFContainerMessage creates the container when a new Asset or Channel was created. 
  * It specifies the container definition in JSON-format.
  */

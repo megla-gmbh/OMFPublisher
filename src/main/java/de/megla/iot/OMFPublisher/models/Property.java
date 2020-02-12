@@ -15,7 +15,6 @@ package de.megla.iot.OMFPublisher.models;
 /**
  * Property.java
  *
- * @author Niklas Rose, Till Böcher 
  * Represents one Property in the Type defintion.
  * Types are listed at the URL: https://omf-developers-companion.readthedocs.io/en/latest/OMF_Type_msg.html#property-types-and-formats
  */

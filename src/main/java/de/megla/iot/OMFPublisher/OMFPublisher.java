@@ -54,7 +54,6 @@ import de.megla.iot.OMFPublisher.models.OMFChannel;
 /**
  * OMFPublisher.java
  * 
- * @author Niklas Rose, Till B�cher 
  * The Class de.megla.iot.OMFPublisher is a specific Wire Component to publish a list of
  * {@link WireRecord}s as received in {@link WireEnvelope} to a destination system
  * platform.

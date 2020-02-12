@@ -14,8 +14,7 @@ package de.megla.iot.OMFPublisher;
 
 /**
  * HttpStatusCode.java
- *
- * @author Niklas Rose, Till Böcher 
+ * 
  * Enum which defines all necessary status codes for an HTTP-request
  */
 public enum HttpStatusCode {

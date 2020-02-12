@@ -15,7 +15,6 @@ package de.megla.iot.OMFPublisher.models;
 /**
  * SourceTarget.java
  *
- * @author Niklas Rose, Till Böcher 
  * Representation of Source and Target object for three different types of links:
  * 1.	The Root asset 
  * 2.	Parent/Child relationship between assets attached to a sub-tree asset element parent.

@@ -16,7 +16,5 @@ import java.util.LinkedList;
 
 /**
  * OMFAssetListQueue.java
- *
- * @author Niklas Rose, Till Böcher
  */
 public class OMFAssetListQueue extends LinkedList<OMFAssetList> {}

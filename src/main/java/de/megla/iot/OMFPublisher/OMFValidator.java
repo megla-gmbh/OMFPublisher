@@ -24,8 +24,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * OMFValidator.java
- * 
- * @author Niklas Rose, Till Böcher
  */
 public class OMFValidator {
 	private static final int OMF_MAX_MESSAGE_SIZE_KB = 192;

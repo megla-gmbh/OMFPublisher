@@ -31,7 +31,6 @@ import de.megla.iot.OMFPublisher.OMFPublisherOptions;
 /**
  * OMFChannel.java
  *
- * @author Niklas Rose, Till Böcher 
  * A channel serves to provide further information about an asset. 
  * Each asset has multiple channels for reading and writing data to / from the IoT device. 
  * It contains the associated IDs of the types and containers and the data

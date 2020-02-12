@@ -20,7 +20,6 @@ import java.util.Map;
 /**
  * OMFPublisherOptions.java
  * 
- * @author Niklas Rose, Till Böcher 
  * The OMFPublisherOptions class supports the publisher by writing the individual definitions of Type, Container, 
  * and Data in a suitable JSON format. In addition, it creates the header according to the "messagetype" 
  * and makes a request to the destination system.

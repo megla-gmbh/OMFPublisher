@@ -27,8 +27,6 @@ import de.megla.iot.OMFPublisher.StringExtensions;
 
 /**
  * OMFAssetList.java
- *
- * @author Niklas Rose, Till Böcher
  */
 public class OMFAssetList extends ArrayList<OMFAsset> {
 	private static final Logger logger =  LoggerFactory.getLogger(OMFValidator.class);

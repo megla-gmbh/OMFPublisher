@@ -18,7 +18,6 @@ import java.util.Map;
 /**
  * OMFTypeMessage.java
  *
- * @author Niklas Rose, Till Böcher 
  * OMFTypeMessage creates the type when a new Asset or Channel was created or modified. 
  * It specifies the type definition in JSON-format.
  */

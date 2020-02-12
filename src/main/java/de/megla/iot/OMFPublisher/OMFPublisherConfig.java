@@ -19,7 +19,6 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 /**
  * OMFPublisherConfig.java
  * 
- * @author Niklas Rose, Till Böcher  
  * This metatype annotation defines an object-class all the required
  * configurations for the options of a Cloud Publisher Wire Component.
  */

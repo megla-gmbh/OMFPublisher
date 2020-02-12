@@ -15,8 +15,6 @@ import org.slf4j.Logger;
 
 /**
  * ErrorHandling.java
- *
- * @author Niklas Rose, Till Böcher 
  */
 public class ErrorHandling {
 	

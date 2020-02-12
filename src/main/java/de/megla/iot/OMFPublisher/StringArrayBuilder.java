@@ -16,8 +16,6 @@ import java.util.Queue;
 
 /**
  * StringArrayBuilder.java
- * 
- * @author Niklas Rose, Till Böcher
  */
 public class StringArrayBuilder {
 	private Queue<String> contents = new LinkedList<String>();

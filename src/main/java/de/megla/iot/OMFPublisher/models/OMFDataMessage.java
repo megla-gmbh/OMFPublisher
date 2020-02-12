@@ -18,7 +18,6 @@ import java.util.HashMap;
 /**
  * OMFDataMessage.java
  *
- * @author Niklas Rose, Till Böcher 
  * Data messages are used to create static assets, link assets and container together and feed container values into destination end points
  * Data messages can span multiple Types and Containers. 
  * The body of a Data message is composed of an array of objects.

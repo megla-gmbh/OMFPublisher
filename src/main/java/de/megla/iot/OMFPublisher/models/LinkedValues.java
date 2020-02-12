@@ -15,7 +15,6 @@ package de.megla.iot.OMFPublisher.models;
 /**
  * LinkedValues.java
  *
- * @author Niklas Rose, Till Böcher 
  * Each link object has the properties "Source" and "Target".
  */
 public class LinkedValues {

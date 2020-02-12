@@ -13,8 +13,6 @@ package de.megla.iot.OMFPublisher;
 
 /**
  * StringExtensions.java
- * 
- * @author Niklas Rose, Till Böcher
  */
 public class StringExtensions {
 	public static int MAX_OMF_STRING_LENGTH = 60;

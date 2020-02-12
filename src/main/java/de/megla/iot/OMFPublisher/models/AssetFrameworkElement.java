@@ -18,7 +18,6 @@ import java.util.HashMap;
 /**
  * AssetFrameworkElement.java
  * 
- *  @author Niklas Rose, Till Böcher 
  * In an on-premises destination system, an asset is interpreted as an Asset Element.
  */
 public class AssetFrameworkElement {
